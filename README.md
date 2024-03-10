@@ -4,8 +4,8 @@ This web application utilizes HTML, CSS, and JavaScript to convert text input in
 
 Features:
 
-Input text and convert it into speech.
-Choose from multiple voice options for speech synthesis.
-Responsive design ensures compatibility across different devices.
-User-friendly interface for effortless text-to-speech conversion.
-A lightweight and efficient solution built with HTML, CSS, and JavaScript.
+1.Input text and convert it into speech.
+2. Choose from multiple voice options for speech synthesis.
+3.Responsive design ensures compatibility across different devices.
+4. User-friendly interface for effortless text-to-speech conversion.
+5. A lightweight and efficient solution built with HTML, CSS, and JavaScript.
