@@ -5,12 +5,120 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text to Voice Converter</title>
     <style>
-
+            *{
+                margin: 0;
+                padding: 0;
+                font-family: 'Poppins',sans-serif;
+                box-sizing: border-box;
+            }
+            .hero{
+                width: 100%;
+                min-height: 100vh;
+                background: rgb(131,58,180);
+background: linear-gradient(90deg, rgba(131,58,180,1) 28%, rgba(22,38,47,1) 83%, rgba(117,66,104,1) 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+            .hero h1{
+                color: #dadada;
+                font-size: 40px;
+                font-weight: 700;
+                margin-top: -50px;
+                margin-bottom: 50px;
+            }
+            .hero h1 span{
+                background-color: #dadada;
+                border-radius: 10px;
+                    padding: 5px;
+                    color: black;
+            }
+            textarea{
+                width: 600px;
+                height: 250px;
+                background-color: #dadada;
+                border-radius: 15px;
+                padding: 20px;
+                outline: 0;
+                border: 0;
+                resize: none;
+                margin-bottom: 30px;
+            }
+            textarea::placeholder{
+                /* font-size: 16px; */
+                
+            }
+            .row{
+                width: 600px;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+            button{
+                    height: 60px;
+                    width: 150px;
+                    border-radius: 25px;
+                    font-size: 25px;
+                    outline: 0;
+                    border: 0;
+                    cursor: pointer;
+                    padding: 10px 20px;
+                    font-weight: 600;
+                    color: black;
+                    background-color: #dadada;
+            }
+            button:hover{
+                background-color: #918d8d;
+            }
+            select{
+                flex: 1;
+                color: black;
+                background-color: #dadada;
+                height: 50px;
+                padding: 0 20px;
+                outline: 0;
+                border: 0;
+                border-radius: 25px;
+                
+                /* appearance: none; */
+                /* background-image: url(dropdown.png);
+                background-repeat: no-repeat;
+                background-size: 15px;
+                background-position-x: calc(100%-20px);
+                background-position-y: 20px; */
+            }
     </style>
 </head>
 <body>
+    <div class="hero">
+        <h1>Text to <span>Voice</span> Converter</h1>
+        <textarea placeholder="Write anything here" id="" cols="30" rows="10"></textarea>
+        <div class="row">
+          
+            <select name="" id=""></select>
+            
+            <button>▶️Listen</button>
+        </div>
     
-    <script 
-    src="js.js"></script>
+    </div>
+    <script>
+        let speech=new SpeechSynthesisUtterance();
+        let voices=[];
+        let voiceSelect=document.querySelector("select");
+        window.speechSynthesis.onvoiceschanged=()=>{
+            voices=window.speechSynthesis.getVoices();
+            speech.voice=voices[0];
+            voices.forEach((voice,i)=> (voiceSelect.options[i]=new Option(voice.name, i)));
+
+        }
+        voiceSelect.addEventListener("change", ()=>{
+            speech.voice=voices[voiceSelect.value]
+        })
+        document.querySelector("button").addEventListener("click", ()=>{
+            speech.text=document.querySelector("textarea").value;
+            window.speechSynthesis.speak(speech);
+        })
+</script>
 </body>
 </html>
